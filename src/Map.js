@@ -7,8 +7,8 @@ class Map extends Component {
   render() {
     const Map  = withScriptjs(withGoogleMap(props => (
       <GoogleMap
-        defaultCenter = { { lat: 33.717500, lng: -117.831100 } }
-        defaultZoom = { 10 }
+        defaultCenter = { { lat: 33.591600, lng: -117.698700 } }
+        defaultZoom = { 12 }
       >
       </GoogleMap>
    )));

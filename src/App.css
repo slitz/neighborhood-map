@@ -1,28 +1,48 @@
-.App {
+.app {
   text-align: center;
+  margin-left: 300px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.list-view {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  padding-top: 20px;
+  background-color: #111;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.list-view a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
 }
 
-.App-title {
-  font-size: 1.5em;
+.search {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
 }
 
-.App-intro {
-  font-size: large;
+.search-bar {
+  flex: 1;
+  background: #e9e;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.search input {
+  width: 100%;
+    padding: 15px 10px;
+    font-size: 1.25em;
+    border: none;
+    outline: none;
+}
+
+@media screen and (max-height: 450px) {
+    .list-view {padding-top: 15px;}
+    .list-view a {font-size: 18px;}
 }
