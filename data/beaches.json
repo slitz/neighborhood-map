@@ -1,0 +1,104 @@
+{
+	"beaches": [{
+		"id": 1,
+		"name": "Seal Beach",
+		"city": "Seal Beach",
+		"county": "Orange",
+		"state": "CA",
+		"latlng": {
+			"lat": 33.737719028593382,
+			"lng": -118.1078747535007
+		},
+    "spot_id":222
+	}, {
+		"id": 2,
+		"name": "Sunset Beach",
+		"city": "Huntington Beach",
+		"county": "Orange",
+		"state": "CA",
+		"latlng": {
+			"lat": 40.713829,
+			"lng": -73.989667
+		}
+	}, {
+		"id": 3,
+		"name": "Bolsa Chica",
+		"city": "Huntington Beach",
+		"county": "Orange",
+		"state": "CA",
+		"latlng": {
+			"lat": 40.713829,
+			"lng": -73.989667
+		}
+	}, {
+		"id": 4,
+		"name": "Huntington City Beach",
+		"city": "Huntington Beach",
+		"county": "Orange",
+		"state": "CA",
+		"latlng": {
+			"lat": 40.713829,
+			"lng": -73.989667
+		}
+	}, {
+		"id": 5,
+		"name": "Huntington State Beach",
+		"city": "Huntington Beach",
+		"county": "Orange",
+		"state": "CA",
+		"latlng": {
+			"lat": 40.713829,
+			"lng": -73.989667
+		}
+	}, {
+		"id": 6,
+		"name": "Newport Beach",
+		"city": "Newport Beach",
+		"county": "Orange",
+		"state": "CA",
+		"latlng": {
+			"lat": 40.713829,
+			"lng": -73.989667
+		}
+	}, {
+		"id": 7,
+		"name": "Salt Creek Beach",
+		"city": "Dana Point",
+		"county": "Orange",
+		"state": "CA",
+		"latlng": {
+			"lat": 40.713829,
+			"lng": -73.989667
+		}
+	}, {
+		"id": 8,
+		"name": "Doheny State Beach",
+		"city": "Dana Point",
+		"county": "Orange",
+		"state": "CA",
+		"latlng": {
+			"lat": 40.713829,
+			"lng": -73.989667
+		}
+	}, {
+		"id": 9,
+		"name": "San Clemente Pier Beach",
+		"city": "San Clemente",
+		"county": "Orange",
+		"state": "CA",
+		"latlng": {
+			"lat": 40.713829,
+			"lng": -73.989667
+		}
+	}, {
+		"id": 10,
+		"name": "T Street Beach",
+		"city": "San Clemente",
+		"county": "Orange",
+		"state": "CA",
+		"latlng": {
+			"lat": 40.713829,
+			"lng": -73.989667
+		}
+	}]
+}

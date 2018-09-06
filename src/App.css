@@ -21,9 +21,10 @@
 
 .search {
   position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
+  width: 270px;
+  top: 1em;
+  left: .5em;
+  right: 1em;
   z-index: 5;
   display: flex;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
@@ -36,7 +37,7 @@
 
 .search input {
   width: 100%;
-    padding: 15px 10px;
+    padding: 5px 5px;
     font-size: 1.25em;
     border: none;
     outline: none;
