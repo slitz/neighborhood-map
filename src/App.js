@@ -6,11 +6,14 @@ import './App.css';
 
 class App extends Component {
   state = {
+    county: 'Orange County',
     beaches: []
   }
   componentDidMount() {
     BeachesAPI.getAllSpots().then((beaches) => {
-      this.setState({ beaches })
+      this.setState({ beaches: beaches.filter((beach) => {
+        return beach.county_name === this.state.county
+      })}) 
     })
   }
   render() {
@@ -19,10 +22,12 @@ class App extends Component {
         <div className="list-view">
           <ListView
             beaches={this.state.beaches}
+            county={this.state.county}
           />
         </div>
         <div className="app">
           <Map
+            county={this.state.county}
             beaches={this.state.beaches}
           />
         </div>

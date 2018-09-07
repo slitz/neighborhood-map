@@ -10,16 +10,10 @@ export const get = (spotId) =>
     .then(res => res.json())
     .then(data => data)
 
-export const getAll = (county) =>
-  fetch(`${api}/api/county/spots/${county}`, { headers })
-    .then(res => res.json())
-    .catch(function(error) {
-      console.log('Looks like there was a problem: \n', error);
-    });
-
 export const getAllSpots = () =>
   fetch(`${api}/api/spot/all`, { headers })
     .then(res => res.json())
+    .then(data => data)
     .catch(function(error) {
       console.log('Looks like there was a problem: \n', error);
     });

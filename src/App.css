@@ -27,20 +27,33 @@
   right: 1em;
   z-index: 5;
   display: flex;
+  flex-wrap: wrap;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
 }
 
 .search-bar {
-  flex: 1;
   background: #e9e;
 }
 
 .search input {
   width: 100%;
-    padding: 5px 5px;
-    font-size: 1.25em;
-    border: none;
-    outline: none;
+  padding: 5px 5px;
+  font-size: 1.25em;
+  border: none;
+  outline: none;
+}
+
+.beaches-list {
+  padding-left: 20px; 
+}
+
+.beach {
+  color: white;
+  padding-bottom: .5em;
+}
+
+ul {
+  list-style: none;
 }
 
 @media screen and (max-height: 450px) {
