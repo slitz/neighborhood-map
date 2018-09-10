@@ -4,42 +4,30 @@ import Beach from './Beach'
 
 class ListView extends Component {
   static propTypes = {
-    county: PropTypes.string.isRequired,
-    beaches: PropTypes.array.isRequired
+    beaches: PropTypes.array.isRequired,
+    filteredBeaches: PropTypes.array.isRequired,
+    filterBeaches: PropTypes.func.isRequired
   }
 
   state = {
-    query: '',
-    searchResults: []
-  }
-
-  searchBeaches = (query) => {
-    let results = ''
-    this.props.beaches.filter((beach) => {
-      beach.spot_name.includes(query)
-    })
-    this.setState(state => ({
-      searchResults: results
-    }))
+    query: ''
   }
 
   updateQuery = (query) => {
     this.setState({ query: query })
-    if(query.length > 0) {
-      this.searchBeaches(query)
-    }
+    this.props.filterBeaches(query)
   }
 
   render() {
-    const { beaches } = this.props
-    const { query, searchResults } = this.state
+    const { filteredBeaches } = this.props
+    const { query } = this.state
     return (
       <div className="search">
         <div className="search-bar">
           <div className="search-input-wrapper">
               <input
                 type="text"
-                placeholder="Search beaches"
+                placeholder="Filter beaches"
                 value={query}
                 onChange={(event) => this.updateQuery(event.target.value)}
               />
@@ -47,7 +35,7 @@ class ListView extends Component {
         </div>
         <div className="search-beaches-results">
           <ul className="beaches-list">
-            {beaches.length > 0 && beaches.map((beach) => (
+            {filteredBeaches.map((beach) => (
               <Beach
                 key={beach.spot_id}
                 beach={beach}
