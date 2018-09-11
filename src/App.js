@@ -39,7 +39,7 @@ class App extends Component {
             filterBeaches={this.filterBeaches}
           />
         </div>
-        <div className="app">
+        <div className="map">
           <MapContainer
             filteredBeaches={this.state.filteredBeaches.length > 0 ?
               this.state.filteredBeaches : this.state.beaches}

@@ -14,8 +14,10 @@ class MapContainer extends Component {
     return (
       <Map
         google={ this.props.google }
+        className={'map'}
+        // style={{width: '80%', height: '100%', position: 'absolute'}}
         zoom={ 11 }
-        initialCenter={ { lat: 33.609562, lng: -117.777999 } }
+        initialCenter={ { lat: 33.56500, lng: -117.79550 } }
       >
         {filteredBeaches.map((beach) => (
           <Marker
