@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import Beach from './Beach'
 
 class ListView extends Component {
   static propTypes = {
@@ -10,7 +9,8 @@ class ListView extends Component {
   }
 
   state = {
-    query: ''
+    query: '',
+    selectedBeach: ''
   }
 
   updateQuery = (query) => {
@@ -36,12 +36,20 @@ class ListView extends Component {
         <div className="search-beaches-results">
           <ul className="beaches-list">
             {filteredBeaches.map((beach) => (
-              <Beach
-                key={beach.spot_id}
-                beach={beach}
-                />
+              <li
+                key={beach.spot_id}>
+                <div
+                  className="beach"
+                  onClick={() => this.setState({ selectedBeach: beach.spot_name})}
+                >
+                  <a>
+                    {beach.spot_name}
+                  </a>
+                </div>
+              </li>
             ))}
           </ul>
+          {console.log(this.state.selectedBeach)}
         </div>
       </div>
     );

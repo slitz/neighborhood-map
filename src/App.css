@@ -25,11 +25,11 @@ body {
 }
 
 .list-view a {
-  padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 18px;
   color: #818181;
   display: block;
+  cursor: pointer;
 }
 
 .search {
@@ -67,6 +67,10 @@ body {
 
 ul {
   list-style: none;
+}
+
+.marker-info {
+  font-size: .5em;
 }
 
 @media screen and (max-height: 450px) {
