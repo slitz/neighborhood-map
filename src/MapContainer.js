@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
+import MapMarker from './MapMarker'
 import PropTypes from 'prop-types'
 
 /* Using google-maps-react package as described here:
 https://www.npmjs.com/package/google-maps-react */
 class MapContainer extends Component {
   static propTypes = {
-    filteredBeaches: PropTypes.array.isRequired
+    filteredBeaches: PropTypes.array.isRequired,
+    //selectedBeach: PropTypes.object.isRequired,
+    //beachClick: PropTypes.func.isRequired
   }
 
   state = {
@@ -15,7 +18,7 @@ class MapContainer extends Component {
     selectedBeach: {}
   };
 
-  markerClick = (props, marker) =>
+  beachMarkerClick = (props, marker) =>
     this.setState({
       selectedBeach: props,
       activeMarker: marker,
@@ -34,19 +37,19 @@ class MapContainer extends Component {
     const { filteredBeaches } = this.props
     return (
       <Map
-        google={ this.props.google }
+        google={this.props.google}
         onClick={this.mapClick}
         className={'map'}
         zoom={ 11 }
         initialCenter={ { lat: 33.56500, lng: -117.79550 } }
       >
-        {filteredBeaches.map((beach) => (
+        {this.state.filteredBeaches.map((beach) => (
           <Marker
             key={beach.spot_id}
             position={{ lat: beach.latitude, lng: beach.longitude }}
             title={beach.spot_name}
             name={beach.spot_id}
-            onClick={this.markerClick}
+            onClick={this.beachMarkerClick}
           />
           ))}
           <InfoWindow

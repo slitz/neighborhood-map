@@ -5,12 +5,15 @@ class ListView extends Component {
   static propTypes = {
     beaches: PropTypes.array.isRequired,
     filteredBeaches: PropTypes.array.isRequired,
-    filterBeaches: PropTypes.func.isRequired
+    filterBeaches: PropTypes.func.isRequired,
+    // showingInfoWindow: PropTypes.bool.isRequired,
+    activeMarker: PropTypes.object.isRequired,
+    beachClick: PropTypes.func.isRequired,
+    selectedBeach: PropTypes.object.isRequired
   }
 
   state = {
-    query: '',
-    selectedBeach: ''
+    query: ''
   }
 
   updateQuery = (query) => {
@@ -19,7 +22,7 @@ class ListView extends Component {
   }
 
   render() {
-    const { filteredBeaches } = this.props
+    const { filteredBeaches, selectedBeach, beachClick, activeMarker, showingInfoWindow } = this.props
     const { query } = this.state
     return (
       <div className="search">
@@ -40,7 +43,7 @@ class ListView extends Component {
                 key={beach.spot_id}>
                 <div
                   className="beach"
-                  onClick={() => this.setState({ selectedBeach: beach.spot_name})}
+                  onClick={beachClick}
                 >
                   <a>
                     {beach.spot_name}
@@ -49,7 +52,7 @@ class ListView extends Component {
               </li>
             ))}
           </ul>
-          {console.log(this.state.selectedBeach)}
+          {console.log(selectedBeach)}
         </div>
       </div>
     );
