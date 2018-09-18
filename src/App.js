@@ -13,7 +13,9 @@ class App extends Component {
     beachMarkers: [],
     showingInfoWindow: false,
     activeMarker: {},
-    selectedBeach: {}
+    selectedBeach: {},
+    waveSize: '',
+    error: ''
   }
 
   componentDidMount() {
@@ -45,13 +47,21 @@ class App extends Component {
     this.filterBeaches(query)
   }
 
-  // Displays the info window
-  beachMarkerClick = (props, marker) =>
-    this.setState({
-      selectedBeach: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-  });
+  // Fetches wave height at specified beach and displays the info window
+  // Note: using strategy described here
+  // https://mcculloughwebservices.com/2016/09/23/handling-a-null-response-from-an-api/
+  // to handle null responses from the API
+  beachMarkerClick = (props, marker) => {
+    BeachesAPI.get(props.name)
+      .then(data => {
+        this.setState({
+          waveSize: data != null ? data[0].size + ' ft.' : 'Unavailable',
+          selectedBeach: props,
+          activeMarker: marker,
+          showingInfoWindow: true
+        })
+      })
+    }
 
   // Triggers a list item click to invoke the same functionality as a map markder click
   beachNameClick = (beachName) => {
@@ -79,8 +89,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <div className="list-view">
+      <div className="main">
+        <header className="header">
+          <h2>The Beaches of Orange County</h2>
+        </header>
+        <section className="list-view">
           <div className="search">
             <div className="search-bar">
               <div className="search-input-wrapper">
@@ -110,13 +123,13 @@ class App extends Component {
               </ul>
             </div>
           </div>
-        </div>
-        <div className="map">
+        </section>
+        <section className="map">
           <Map
             google={this.props.google}
             onClick={this.mapClick}
             className={'map'}
-            zoom={ 11 }
+            zoom={ 10 }
             initialCenter={ { lat: 33.56500, lng: -117.79550 } }
           >
             {this.state.filteredBeaches.map((beach) => (
@@ -135,10 +148,11 @@ class App extends Component {
               >
                 <div className="marker-info">
                   <h1>{this.state.selectedBeach.title}</h1>
+                  <h1>{"Wave forecast (height): " + this.state.waveSize}</h1>
                 </div>
               </InfoWindow>
           </Map>
-        </div>
+        </section>
       </div>
     );
   }

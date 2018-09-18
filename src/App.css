@@ -1,27 +1,43 @@
-body {
-  width: 100%;
-  height: 100%;
+html {
+  overflow: auto;
 }
 
-/* .app {
+.header {
+  width: 100%;
+  height: 50px;
+  background-color: #111;
   text-align: center;
-  width: 80%;
-  float: right;
-} */
+  vertical-align: middle;
+  position: fixed;
+  z-index: 1;
+}
 
-.map {
-  position: absolute;
-  margin-left: 145px;
-  width: 80%;
-  height: 100%;
+h2 {
+  color: #818181;
+  margin: 0px;
+  padding: 10px;
 }
 
 .list-view {
-  height: 100%;
+  top: 50px;
+  float: left;
+  max-height: 92.75%;
   width: 20%;
   position: fixed;
-  padding-top: 20px;
+  margin: 0 auto;
   background-color: #111;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-y: scroll;
+}
+
+.map {
+  float: left;
+  position: fixed;
+  margin-left: 11.5%;
+  width: 80%;
+  height: 100%;
+  z-index: -1;
 }
 
 .list-view a {
@@ -33,31 +49,22 @@ body {
 }
 
 .search {
-  position: fixed;
-  width: 270px;
-  top: 1em;
-  left: .5em;
-  right: 1em;
-  z-index: 5;
-  display: flex;
-  flex-wrap: wrap;
+  /* width: 270px; */
+  z-index: -1;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
 }
 
-.search-bar {
-  background: #e9e;
-}
-
 .search input {
-  width: 100%;
-  padding: 5px 5px;
-  font-size: 1.25em;
+  width: 92%;
+  padding: 10px 10px;
+  font-size: 1em;
   border: none;
   outline: none;
 }
 
 .beaches-list {
-  padding-left: 20px;
+  padding-left: 10px;
+  overflow-y: auto;
 }
 
 .beach {
@@ -73,7 +80,7 @@ ul {
   font-size: .5em;
 }
 
-@media screen and (max-height: 450px) {
+/* @media screen and (max-height: 450px) {
     .list-view {padding-top: 15px;}
     .list-view a {font-size: 18px;}
-}
+} */
