@@ -11,8 +11,8 @@ class App extends Component {
     beaches: [],
     filteredBeaches: [],
     beachMarkers: [],
-    showingInfoWindow: false,
     activeMarker: {},
+    showingInfoWindow: false,
     selectedBeach: {},
     waveSize: '',
     error: ''
@@ -58,7 +58,8 @@ class App extends Component {
           waveSize: data != null ? data[0].size + ' ft.' : 'Unavailable',
           selectedBeach: props,
           activeMarker: marker,
-          showingInfoWindow: true
+          showingInfoWindow: true,
+          // animation: this.props.google.maps.Animation.BOUNCE
         })
       })
     }
@@ -70,7 +71,7 @@ class App extends Component {
   }
 
   // Closes the info window when the map is clicked
-  mapClick = (props) => {
+  clearActiveMarker = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
@@ -127,7 +128,7 @@ class App extends Component {
         <section className="map">
           <Map
             google={this.props.google}
-            onClick={this.mapClick}
+            onClick={this.clearActiveMarker}
             className={'map'}
             zoom={ 10 }
             initialCenter={ { lat: 33.56500, lng: -117.79550 } }
@@ -140,15 +141,18 @@ class App extends Component {
                 name={beach.spot_id}
                 onClick={this.beachMarkerClick}
                 ref={this.getMarkers}
+                animation={this.state.activeMarker ? (beach.spot_name === this.state.activeMarker.title ? '1' : '0') : '0'}
               />
               ))}
               <InfoWindow
                 marker={this.state.activeMarker}
                 visible={this.state.showingInfoWindow}
+                onClose={this.clearActiveMarker}
               >
                 <div className="marker-info">
                   <h1>{this.state.selectedBeach.title}</h1>
-                  <h1>{"Wave forecast (height): " + this.state.waveSize}</h1>
+                  <p>{"Wave forecast (height): " + this.state.waveSize}</p>
+                  <cite>Source: spitcast.com</cite>
                 </div>
               </InfoWindow>
           </Map>

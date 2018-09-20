@@ -21,7 +21,7 @@ h2 {
 .list-view {
   top: 50px;
   float: left;
-  max-height: 92.75%;
+  height: 92.75%;
   width: 20%;
   position: fixed;
   margin: 0 auto;
@@ -77,7 +77,15 @@ ul {
 }
 
 .marker-info {
-  font-size: .5em;
+  font-size: .75em;
+}
+
+cite {
+  font-size: 1em;
+}
+
+p {
+  font-size: 1.25em;
 }
 
 /* @media screen and (max-height: 450px) {
