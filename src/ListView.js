@@ -3,27 +3,14 @@ import PropTypes from 'prop-types'
 
 class ListView extends Component {
   static propTypes = {
-    beaches: PropTypes.array.isRequired,
+    query: PropTypes.string.isRequired,
+    updateQuery: PropTypes.func.isRequired,
     filteredBeaches: PropTypes.array.isRequired,
-    filterBeaches: PropTypes.func.isRequired,
-    // showingInfoWindow: PropTypes.bool.isRequired,
-    activeMarker: PropTypes.object.isRequired,
-    beachClick: PropTypes.func.isRequired,
-    selectedBeach: PropTypes.object.isRequired
-  }
-
-  state = {
-    query: ''
-  }
-
-  updateQuery = (query) => {
-    this.setState({ query: query })
-    this.props.filterBeaches(query)
+    beachNameClick: PropTypes.func.isRequired
   }
 
   render() {
-    const { filteredBeaches, selectedBeach, beachClick, activeMarker, showingInfoWindow } = this.props
-    const { query } = this.state
+    const { query, updateQuery, filteredBeaches, beachNameClick } = this.props
     return (
       <div className="search">
         <div className="search-bar">
@@ -32,7 +19,7 @@ class ListView extends Component {
                 type="text"
                 placeholder="Filter beaches"
                 value={query}
-                onChange={(event) => this.updateQuery(event.target.value)}
+                onChange={(event) => updateQuery(event.target.value)}
               />
           </div>
         </div>
@@ -40,10 +27,10 @@ class ListView extends Component {
           <ul className="beaches-list">
             {filteredBeaches.map((beach) => (
               <li
-                key={beach.spot_id}>
+                key={beach.spot_name}>
                 <div
                   className="beach"
-                  onClick={beachClick}
+                  onClick={(event) => beachNameClick(beach.spot_name)}
                 >
                   <a>
                     {beach.spot_name}
@@ -52,7 +39,6 @@ class ListView extends Component {
               </li>
             ))}
           </ul>
-          {console.log(selectedBeach)}
         </div>
       </div>
     );

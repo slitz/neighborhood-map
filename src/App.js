@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import escapeRegExp from 'escape-string-regexp'
-import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
 import * as BeachesAPI from './BeachesAPI'
+import ListView from './ListView'
+import MapContainer from './MapContainer'
 import './App.css';
 
 class App extends Component {
@@ -95,73 +96,28 @@ class App extends Component {
           <h2>The Beaches of Orange County</h2>
         </header>
         <section className="list-view">
-          <div className="search">
-            <div className="search-bar">
-              <div className="search-input-wrapper">
-                  <input
-                    type="text"
-                    placeholder="Filter beaches"
-                    value={this.state.query}
-                    onChange={(event) => this.updateQuery(event.target.value)}
-                  />
-              </div>
-            </div>
-            <div className="search-beaches-results">
-              <ul className="beaches-list">
-                {this.state.filteredBeaches.map((beach) => (
-                  <li
-                    key={beach.spot_name}>
-                    <div
-                      className="beach"
-                      onClick={(event) => this.beachNameClick(beach.spot_name)}
-                    >
-                      <a>
-                        {beach.spot_name}
-                      </a>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <ListView
+            query={this.state.query}
+            updateQuery={this.updateQuery}
+            filteredBeaches={this.state.filteredBeaches}
+            beachNameClick={this.beachNameClick}
+          />
         </section>
         <section className="map">
-          <Map
-            google={this.props.google}
-            onClick={this.clearActiveMarker}
-            className={'map'}
-            zoom={ 10 }
-            initialCenter={ { lat: 33.56500, lng: -117.79550 } }
-          >
-            {this.state.filteredBeaches.map((beach) => (
-              <Marker
-                key={beach.spot_id}
-                position={{ lat: beach.latitude, lng: beach.longitude }}
-                title={beach.spot_name}
-                name={beach.spot_id}
-                onClick={this.beachMarkerClick}
-                ref={this.getMarkers}
-                animation={this.state.activeMarker ? (beach.spot_name === this.state.activeMarker.title ? '1' : '0') : '0'}
-              />
-              ))}
-              <InfoWindow
-                marker={this.state.activeMarker}
-                visible={this.state.showingInfoWindow}
-                onClose={this.clearActiveMarker}
-              >
-                <div className="marker-info">
-                  <h1>{this.state.selectedBeach.title}</h1>
-                  <p>{"Wave forecast (height): " + this.state.waveSize}</p>
-                  <cite>Source: spitcast.com</cite>
-                </div>
-              </InfoWindow>
-          </Map>
+          <MapContainer
+            filteredBeaches={this.state.filteredBeaches}
+            clearActiveMarker={this.clearActiveMarker}
+            selectedBeach={this.state.selectedBeach}
+            beachMarkerClick={this.beachMarkerClick}
+            activeMarker={this.state.activeMarker}
+            showingInfoWindow={this.state.showingInfoWindow}
+            waveSize={this.state.waveSize}
+            getMarkers={this.getMarkers}
+          />
         </section>
       </div>
     );
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey:'AIzaSyCtruZW9bcy9NqewmArDxmOwvzA55iX7Q4'
-})(App)
+export default App;
