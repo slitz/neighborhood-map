@@ -4,6 +4,7 @@ import * as BeachesAPI from './BeachesAPI'
 import ListView from './ListView'
 import MapContainer from './MapContainer'
 import './App.css';
+import menu from './icons/menu.svg';
 
 class App extends Component {
   state = {
@@ -93,6 +94,9 @@ class App extends Component {
     return (
       <div className="main">
         <header className="header">
+          <div className="toggle-icon">
+            <img src={menu} alt='Toggle beach list'/>
+          </div>
           <h2>The Beaches of Orange County</h2>
         </header>
         <section className="list-view">
