@@ -17,7 +17,8 @@ class App extends Component {
     showingInfoWindow: false,
     selectedBeach: {},
     waveSize: '',
-    error: ''
+    error: '',
+    listViewVisible: true
   }
 
   componentDidMount() {
@@ -60,8 +61,7 @@ class App extends Component {
           waveSize: data != null ? data[0].size + ' ft.' : 'Unavailable',
           selectedBeach: props,
           activeMarker: marker,
-          showingInfoWindow: true,
-          // animation: this.props.google.maps.Animation.BOUNCE
+          showingInfoWindow: true
         })
       })
     }
@@ -90,16 +90,28 @@ class App extends Component {
     }
   }
 
+  // List view toggle inspired by https://codepen.io/_danko/pen/EypdyW
+  toggleListView = () => {
+    this.setState({
+      listViewVisible: !this.state.listViewVisible
+    })
+  }
+
   render() {
     return (
       <div className="main">
         <header className="header">
-          <div className="toggle-icon">
-            <img src={menu} alt='Toggle beach list'/>
+          <div
+            className="toggle-icon"
+            onClick={this.toggleListView}
+          >
+              <img src={menu} alt='Toggle beach list'/>
           </div>
           <h2>The Beaches of Orange County</h2>
         </header>
-        <section className="list-view">
+        <section
+          className={ this.state.listViewVisible ? "list-view" : "list-view visible" }
+        >
           <ListView
             query={this.state.query}
             updateQuery={this.updateQuery}
