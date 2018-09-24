@@ -24,10 +24,13 @@ class ListView extends Component {
           </div>
         </div>
         <div className="search-beaches-results">
-          <ul className="beaches-list">
+          <ul
+            className="beaches-list"
+            >
             {filteredBeaches.map((beach) => (
               <li
-                key={beach.spot_name}>
+                key={beach.spot_name}
+              >
                 <div
                   className="beach"
                   onClick={(event) => beachNameClick(beach.spot_name)}

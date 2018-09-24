@@ -22,10 +22,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // Set the locations based on response from 3rd party API call
+    // Set the locations based on response from spitcast.com API call
     BeachesAPI.getAllSpots().then((beaches) => {
       this.setState({
-        // Set the master list of beaches
+        // Set the master list of beaches using the county state value
         beaches: beaches.filter((beach) => {
           return beach.county_name === this.state.county
         }),
@@ -99,15 +99,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="main">
+      <div
+        className="main"
+        role="main"
+      >
         <header className="header">
           <div
             className="toggle-icon"
             onClick={this.toggleListView}
           >
-              <img src={menu} alt='Toggle beach list'/>
+              <img
+                src={menu}
+                alt='Toggle beach list'
+              />
           </div>
-          <h2>The Beaches of Orange County</h2>
+          <h2>Orange County Surf Forecast</h2>
         </header>
         <section
           className={ this.state.listViewVisible ? "list-view" : "list-view visible" }

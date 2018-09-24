@@ -113,6 +113,12 @@ p {
     width: 50%;
     padding: 4px;
   }
+  .list-view {
+    width: 50%;
+  }
+  .list-view a {
+    font-size: 14px;
+  }
 }
 
 @media screen and (min-width: 356px) and (max-width: 500px) {
@@ -123,6 +129,30 @@ p {
   .toggle-icon img {
     width: 50%;
     padding: 4px;
+  }
+  .list-view {
+    width: 50%;
+  }
+  .list-view a {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 600px) {
+  .list-view {
+    width: 40%;
+  }
+  .list-view a {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+  .list-view {
+    width: 30%;
+  }
+  .list-view a {
+    font-size: 14px;
   }
 }
 
@@ -139,7 +169,7 @@ p {
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (min-width: 800px) and (max-width: 900px) {
   .list-view a {
     font-size: 12px;
   }
