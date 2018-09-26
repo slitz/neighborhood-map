@@ -106,7 +106,7 @@ p {
 
 @media screen and (max-width: 356px) {
   h2 {
-    font-size: 14px;
+    font-size: 16px;
     padding: 14px;
   }
   .toggle-icon img {

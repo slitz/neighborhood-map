@@ -127,7 +127,7 @@ class App extends Component {
                 alt='Toggle beach list'
               />
           </div>
-          <h2>Orange County Beaches & Surf Forecasts</h2>
+          <h2>OC Beaches & Surf Forecasts</h2>
         </header>
         <section
           className={ this.state.listViewVisible ? "list-view" : "list-view visible" }
