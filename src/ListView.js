@@ -18,6 +18,7 @@ class ListView extends Component {
               <input
                 type="text"
                 placeholder="Filter beaches"
+                tabIndex={1}
                 value={query}
                 onChange={(event) => updateQuery(event.target.value)}
               />
@@ -30,6 +31,8 @@ class ListView extends Component {
             {filteredBeaches.map((beach) => (
               <li
                 key={beach.spot_name}
+                tabIndex={2}
+                onKeyPress={(event) => beachNameClick(beach.spot_name)}
               >
                 <div
                   className="beach"

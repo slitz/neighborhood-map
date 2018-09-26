@@ -17,8 +17,8 @@ class App extends Component {
     showingInfoWindow: false,
     selectedBeach: {},
     waveSize: '',
-    error: '',
-    listViewVisible: true
+    listViewVisible: true,
+    excludedBeachIds: [739, 740, 601, 741, 218, 216, 742, 610, 744, 210]
   }
 
   componentDidMount() {
@@ -55,16 +55,30 @@ class App extends Component {
   // https://mcculloughwebservices.com/2016/09/23/handling-a-null-response-from-an-api/
   // to handle null responses from the API
   beachMarkerClick = (props, marker) => {
-    BeachesAPI.get(props.name)
-      .then(data => {
-        this.setState({
-          waveSize: data != null ? data[0].size + ' ft.' : 'Unavailable',
-          selectedBeach: props,
-          activeMarker: marker,
-          showingInfoWindow: true
+    // There is a set of beaches returned by the BeachesAPI getAllSpots method
+    // that fail when passed into the BeachesAPI get method.  The 3rd party API
+    // returns a 500 response.  These known beaches are excluded from the get
+    // call below.  If the get call is made for an included beach and it fails
+    // the data will be set to 'unavailable'.
+    if(!this.state.excludedBeachIds.includes(props.name)) {
+      BeachesAPI.get(props.name)
+        .then(data => {
+          this.setState({
+            waveSize: data != null ? data[0].size + ' ft.' : 'Unavailable',
+            selectedBeach: props,
+            activeMarker: marker,
+            showingInfoWindow: true
+          })
         })
+    } else {
+      this.setState({
+        waveSize: 'Unavailable',
+        selectedBeach: props,
+        activeMarker: marker,
+        showingInfoWindow: true
       })
     }
+  }
 
   // Triggers a list item click to invoke the same functionality as a map markder click
   beachNameClick = (beachName) => {
@@ -113,7 +127,7 @@ class App extends Component {
                 alt='Toggle beach list'
               />
           </div>
-          <h2>Orange County Surf Forecast</h2>
+          <h2>Orange County Beaches & Surf Forecasts</h2>
         </header>
         <section
           className={ this.state.listViewVisible ? "list-view" : "list-view visible" }
